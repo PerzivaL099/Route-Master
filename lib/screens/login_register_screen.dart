@@ -7,7 +7,7 @@ class LoginRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       appBar: AppBar(title: Text('Welcome! Sign In / Register')),
       body: Center(
         child: Text('This is the Login/Register Screen', textAlign: TextAlign.center),

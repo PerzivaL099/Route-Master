@@ -2,23 +2,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // <--- 1. Import added
 import 'firebase_options.dart';
-import 'package:run_app/screens/auth_wrapper.dart'; // Import AuthWrapper
+import 'package:run_app/screens/auth_wrapper.dart'; 
 
 void main() async {
   // 1. Initialize Flutter Bindings
   WidgetsFlutterBinding.ensureInitialized(); 
 
-  // 2. Initialize Firebase Core
+  // 2. Load Environment Variables (Added this step)
+  await dotenv.load(fileName: ".env");
+
+  // 3. Initialize Firebase Core
+  // Now this will successfully read the keys from the loaded .env file
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   
-  // 3. Run the application
+  // 4. Run the application
   runApp(const RunningTrackerApp());
 }
 
-// Renamed from MyApp to RunningTrackerApp
 class RunningTrackerApp extends StatelessWidget {
   const RunningTrackerApp({super.key});
 

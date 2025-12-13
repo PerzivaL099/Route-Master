@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // <--- 1. Import Added
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -49,16 +50,18 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBt0wpFhqbmmgwBPK11Q_ow4NHR6OGE3t8',
+  // 2. Changed from 'static const' to 'static FirebaseOptions get'
+  static FirebaseOptions get android => FirebaseOptions(
+    apiKey: dotenv.env['Android_KEY']!, // <--- 3. Using Secure Env Variable
     appId: '1:43870521160:android:5d99464f74ca45d3b5157d',
     messagingSenderId: '43870521160',
     projectId: 'running-tracker-48dcf',
     storageBucket: 'running-tracker-48dcf.firebasestorage.app',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCPQcYTEBnyToxqPHAuFDfuiTKWiesTuvo',
+  // 2. Changed from 'static const' to 'static FirebaseOptions get'
+  static FirebaseOptions get ios => FirebaseOptions(
+    apiKey: dotenv.env['IOS_KEY']!, // <--- 3. Using Secure Env Variable
     appId: '1:43870521160:ios:2d170af7d61c4273b5157d',
     messagingSenderId: '43870521160',
     projectId: 'running-tracker-48dcf',
